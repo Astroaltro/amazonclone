@@ -1,127 +1,227 @@
 import React from 'react';
 import './App.css';
 
-const App: React.FC = () => {
-  return (
-    <div className="yahoo-app">
-      {/* Top Navigation */}
-      <header className="yahoo-header">
-        <div className="header-content">
-          <div className="logo-container">
-            <h1 className="yahoo-logo">yahoo<span className="exclamation">!</span></h1>
-          </div>
+interface Product {
+  id: string;
+  badge?: string;
+  title: string;
+  rating: number;
+  reviews: string;
+  bought: string;
+  price: number;
+  typicalPrice?: number;
+  deliveryDate: string;
+  shipsTo: string;
+  buttonType: 'cart' | 'options';
+  imageUrl: string;
+}
 
-          <div className="search-container">
-            <div className="search-box">
-              <input type="text" placeholder="Search the web" />
-              <button className="voice-search-btn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
-              </button>
-              <button className="search-submit-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-              </button>
+const products: Product[] = [
+  {
+    id: '1',
+    badge: 'Best Seller',
+    title: 'FYY Travel Cable Organizer Pouch Electronic Accessories Carry Case Portable Waterproof Double Layers All-in-One Storage Bag for Cord, Charger, Phone, Earphone Black',
+    rating: 4.6,
+    reviews: '37.9K',
+    bought: '10K+ bought in past month',
+    price: 8.86,
+    typicalPrice: 9.85,
+    deliveryDate: 'Thu, Jun 4',
+    shipsTo: 'Bangladesh',
+    buttonType: 'cart',
+    imageUrl: 'https://via.placeholder.com/200x200?text=Cable+Organizer'
+  },
+  {
+    id: '2',
+    badge: 'Overall Pick',
+    title: 'Vacbird Vacuum Bags for Travel with Rechargeable air Pump, Carry-on Size Compression Packing Bags for Luggage and Suitcase, Space Saver for Clothes and Clothing 15 Combo Travel Size',
+    rating: 4.4,
+    reviews: '4.1K',
+    bought: '30K+ bought in past month',
+    price: 32.28,
+    typicalPrice: 43.95,
+    deliveryDate: 'Thu, Jun 4',
+    shipsTo: 'Bangladesh',
+    buttonType: 'options',
+    imageUrl: 'https://via.placeholder.com/200x200?text=Vacuum+Bags'
+  },
+  {
+    id: '3',
+    badge: 'Best Seller',
+    title: '18pack Travel Bottles for Toiletries,TSA Approved Silicone Travel Containers for Toiletries,Leak Proof Refillable Liqus Shampoo And Conditioner travel Essentials toiletry Bottles',
+    rating: 4.6,
+    reviews: '11.3K',
+    bought: '20K+ bought in past month',
+    price: 9.99,
+    typicalPrice: 12.98,
+    deliveryDate: 'Thu, Jun 4',
+    shipsTo: 'Bangladesh',
+    buttonType: 'cart',
+    imageUrl: 'https://via.placeholder.com/200x200?text=Travel+Bottles'
+  }
+];
+
+function App() {
+  return (
+    <div className="amazon-clone">
+      {/* Header / Navigation */}
+      <header className="header">
+        <div className="nav-main">
+          <div className="nav-left">
+            <div className="logo">amazon</div>
+            <div className="delivery">
+              <span className="text-small">Deliver to</span>
+              <span className="text-bold">Bangladesh</span>
             </div>
           </div>
-
-          <nav className="header-nav">
-            <a href="#" className="nav-link active">News</a>
-            <a href="#" className="nav-link">Finance</a>
-            <a href="#" className="nav-link">Sports</a>
-            <div className="nav-link dropdown">More ⌄</div>
-          </nav>
-
-          <div className="header-actions">
-            <button className="mail-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-              Mail
-            </button>
-            <button className="signin-btn">Sign in</button>
+          
+          <div className="nav-search">
+            <select className="search-select">
+              <option>All</option>
+            </select>
+            <input type="text" value="travel" readOnly className="search-input" />
+            <button className="search-button">🔍</button>
           </div>
+
+          <div className="nav-right">
+            <div className="nav-item">
+              <span className="text-small">Hello, sign in</span>
+              <span className="text-bold">Account & Lists</span>
+            </div>
+            <div className="nav-item">
+              <span className="text-small">Returns</span>
+              <span className="text-bold">& Orders</span>
+            </div>
+            <div className="nav-cart">
+              🛒 Cart
+            </div>
+          </div>
+        </div>
+
+        <div className="nav-sub">
+          <ul>
+            <li>≡ All</li>
+            <li>Today's Deals</li>
+            <li>Gift Cards</li>
+            <li>Sell</li>
+            <li>Registry</li>
+            <li>Prime Video</li>
+            <li>Customer Service</li>
+          </ul>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="main-layout">
-        
-        {/* Left/Center News Feed */}
-        <div className="news-feed">
-          
-          {/* Article 1 */}
-          <article className="news-card">
-            <div className="image-wrapper video-wrapper">
-              <div className="play-button">▶</div>
-            </div>
-            <div className="card-content">
-              <span className="category politics">Politics</span>
-              <h2 className="title">Trump's refrigerant announcement to lower grocery prices may have negative...</h2>
-              <div className="meta">
-                <span className="source-icon the-hill"></span>
-                <span className="source">The Hill</span>
-                <span className="comments">💬 781</span>
-              </div>
-            </div>
-          </article>
-
-          {/* Article 2 */}
-          <article className="news-card">
-            <div className="image-wrapper article-2-img"></div>
-            <div className="card-content">
-              <span className="category us">US</span>
-              <h2 className="title">Miami Graffiti Artist Dies After Being Struck by Train That's Reportedly Killed Over 200...</h2>
-              <div className="meta">
-                <span className="source-icon people"></span>
-                <span className="source">People</span>
-                <span className="comments">💬 279</span>
-              </div>
-            </div>
-          </article>
-
-          {/* Article 3 (Ad) */}
-          <article className="news-card">
-            <div className="image-wrapper article-3-img"></div>
-            <div className="card-content">
-              <div className="ad-header">
-                <span className="ad-badge">Ad</span>
-                <span className="category">Daily Sport X</span>
-              </div>
-              <h2 className="title">Remember Him, Better Sit Down Before You See What He Looks Like Now</h2>
-            </div>
-          </article>
-
-          {/* Article 4 */}
-          <article className="news-card">
-            <div className="image-wrapper article-4-img"></div>
-            <div className="card-content">
-              <span className="category us">US</span>
-              <h2 className="title">Ontario Police Deploy Secret Spyware That Lets Them Remotely Take Over Your Phone</h2>
-              <div className="meta">
-                <span className="source">Gizmodo</span>
-                <span className="comments">💬 112</span>
-              </div>
-            </div>
-          </article>
-
+      {/* Main Content Area */}
+      <div className="content-container">
+        {/* Top Results Bar */}
+        <div className="results-bar">
+          <span>1-16 of over 200,000 results for <strong>"travel"</strong></span>
+          <select className="sort-select">
+            <option>Sort by: Featured</option>
+          </select>
         </div>
 
-        {/* Right Sidebar Ad */}
-        <aside className="sidebar">
-          <div className="ad-banner">
-            <div className="ad-banner-header">
-              <span className="ad-icon">▶</span>
-              <span className="ad-close">ⓘ</span>
+        <div className="main-layout">
+          {/* Sidebar Filters */}
+          <aside className="sidebar">
+            <div className="filter-group">
+              <h4>Popular Shopping Ideas</h4>
+              <ul>
+                <li>Medicine</li>
+                <li>Power Bank</li>
+                <li>Storage</li>
+                <li>Hygiene</li>
+              </ul>
             </div>
-            <div className="ad-banner-content">
-              <h3>Elastic<br/>Email</h3>
-              <h4>Email Communication Platform</h4>
-              <p><strong>Small businesses</strong> trust Elastic Email to deliver their mail. Start free, no card needed.</p>
-              <button className="ad-open-btn">Open</button>
+            <div className="filter-group">
+              <h4>Gender</h4>
+              <ul>
+                <li><input type="checkbox" /> Men</li>
+                <li><input type="checkbox" /> Women</li>
+                <li><input type="checkbox" /> Boys</li>
+                <li><input type="checkbox" /> Girls</li>
+              </ul>
             </div>
-          </div>
-        </aside>
+            <div className="filter-group">
+              <h4>Price</h4>
+              <ul>
+                <li>Up to $10</li>
+                <li>$10 to $15</li>
+                <li>$15 to $20</li>
+              </ul>
+            </div>
+          </aside>
 
-      </main>
+          {/* Product Results */}
+          <main className="product-list">
+            <h2>Results</h2>
+            <p className="subtitle">Check each product page for other buying options.</p>
+            
+            {products.map((product) => (
+              <div key={product.id} className="product-card">
+                <div className="product-image">
+                  <img src={product.imageUrl} alt={product.title} />
+                </div>
+                
+                <div className="product-details">
+                  {product.badge && <span className="badge">{product.badge}</span>}
+                  <h3 className="product-title">{product.title}</h3>
+                  
+                  <div className="product-rating">
+                    ⭐⭐⭐⭐⭐ {product.rating} <span className="reviews">({product.reviews})</span>
+                  </div>
+                  <div className="bought-past-month">{product.bought}</div>
+                  
+                  <div className="product-price-section">
+                    <span className="price-symbol">$</span>
+                    <span className="price-whole">{Math.floor(product.price)}</span>
+                    <span className="price-fraction">{(product.price % 1).toFixed(2).substring(2)}</span>
+                    {product.typicalPrice && (
+                      <span className="typical-price">Typical: ${product.typicalPrice}</span>
+                    )}
+                  </div>
+                  
+                  <div className="delivery-info">
+                    <p>${(product.price * 3).toFixed(2)} delivery <strong>{product.deliveryDate}</strong></p>
+                    <p>Ships to {product.shipsTo}</p>
+                  </div>
+
+                  {product.buttonType === 'cart' ? (
+                    <button className="btn-add-cart">Add to cart</button>
+                  ) : (
+                    <button className="btn-options">See options</button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </main>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="back-to-top">Back to top</div>
+        <div className="footer-links">
+          <div className="footer-col">
+            <h4>Get to Know Us</h4>
+            <ul><li>Careers</li><li>Blog</li><li>About Amazon</li></ul>
+          </div>
+          <div className="footer-col">
+            <h4>Make Money with Us</h4>
+            <ul><li>Sell products on Amazon</li><li>Sell apps on Amazon</li><li>Become an Affiliate</li></ul>
+          </div>
+          <div className="footer-col">
+            <h4>Amazon Payment Products</h4>
+            <ul><li>Amazon Rewards Visa</li><li>Amazon.com Store Card</li></ul>
+          </div>
+          <div className="footer-col">
+            <h4>Let Us Help You</h4>
+            <ul><li>Your Account</li><li>Your Orders</li><li>Shipping Rates</li></ul>
+          </div>
+        </div>
+      </footer>
     </div>
   );
-};
+}
 
 export default App;
