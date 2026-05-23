@@ -1,15 +1,16 @@
 /* Base Variables & Reset */
 :root {
-  --bg-dark: #0b1416;
-  --bg-surface: #1a282d;
-  --bg-hover: #2a3c42;
-  --text-primary: #f2f4f5;
-  --text-secondary: #82959b;
-  --border-color: #34454b;
-  --accent-color: #0045ac;
-  --brand-orange: #ff4500;
-  --nav-height: 56px;
-  --sidebar-width: 270px;
+  --yahoo-purple: #7e1fff;
+  --yahoo-dark-purple: #6001d2;
+  --bg-page: #f5f8fa;
+  --bg-surface: #ffffff;
+  --text-main: #1d2226;
+  --text-muted: #5a5a5a;
+  --border-light: #e0e4e9;
+  --border-input: #b0b8c4;
+  --hover-grey: #f0f3f5;
+  --link-color: #0057b8;
+  --header-height: 80px;
 }
 
 * {
@@ -19,348 +20,374 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bg-dark);
-  color: var(--text-primary);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
 }
 
-.reddit-app {
+.yahoo-app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* --- Navigation Bar --- */
-.navbar {
-  height: var(--nav-height);
-  background-color: var(--bg-dark);
-  border-bottom: 1px solid var(--border-color);
+/* --- Header --- */
+.yahoo-header {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-light);
+  height: var(--header-height);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  position: fixed;
+  position: sticky;
   top: 0;
-  width: 100%;
   z-index: 100;
 }
 
-.nav-left .logo {
+.header-content {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.yahoo-logo {
+  color: var(--yahoo-purple);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.exclamation {
+  font-style: italic;
+}
+
+/* Search Bar */
+.search-container {
+  flex: 1;
+  max-width: 600px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-surface);
+  border: 2px solid var(--yahoo-purple);
+  border-radius: 24px;
+  height: 44px;
+  overflow: hidden;
+  padding-left: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: var(--text-main);
+  background: transparent;
+}
+
+.voice-search-btn {
+  background: transparent;
+  border: none;
+  color: var(--yahoo-purple);
+  padding: 0 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.search-submit-btn {
+  background-color: var(--yahoo-purple);
+  border: none;
+  height: 100%;
+  padding: 0 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.search-submit-btn:hover {
+  background-color: var(--yahoo-dark-purple);
+}
+
+/* Navigation Links */
+.header-nav {
+  display: flex;
+  gap: 24px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: var(--yahoo-purple);
+}
+
+.nav-link.active {
+  color: var(--text-main);
+}
+
+.dropdown {
+  color: var(--text-muted);
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.mail-btn, .signin-btn {
+  background: transparent;
+  border: 1px solid var(--border-input);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 1.2rem;
-  font-weight: 700;
-  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.logo-icon {
-  color: var(--brand-orange);
-  font-size: 1.5rem;
+.mail-btn {
+  border-color: var(--yahoo-purple);
+  color: var(--yahoo-purple);
 }
 
-.nav-center {
-  flex: 1;
-  max-width: 600px;
-  margin: 0 20px;
+.mail-btn:hover {
+  background-color: rgba(126, 31, 255, 0.05);
 }
 
-.search-bar {
-  display: flex;
-  align-items: center;
-  background-color: var(--bg-surface);
-  border-radius: 20px;
-  padding: 8px 16px;
-}
-
-.search-bar input {
-  background: transparent;
-  border: none;
-  color: var(--text-primary);
-  outline: none;
-  width: 100%;
-  margin-left: 8px;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-button {
-  background: transparent;
-  border: none;
-  color: var(--text-primary);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.create-btn {
-  background-color: var(--bg-surface);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-weight: 600;
-}
-
-.create-btn:hover {
-  background-color: var(--bg-hover);
-}
-
-.avatar {
-  width: 32px;
-  height: 32px;
-  background-color: #ccc;
-  border-radius: 50%;
+.signin-btn:hover {
+  background-color: var(--hover-grey);
 }
 
 /* --- Main Layout --- */
 .main-layout {
-  display: flex;
-  margin-top: var(--nav-height);
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 32px;
+  max-width: 1200px;
   width: 100%;
+  margin: 32px auto;
+  padding: 0 24px;
 }
 
-/* --- Sidebar --- */
-.sidebar {
-  width: var(--sidebar-width);
-  height: calc(100vh - var(--nav-height));
-  position: fixed;
-  left: 0;
-  overflow-y: auto;
-  border-right: 1px solid var(--border-color);
-  padding: 16px 0;
-}
-
-.sidebar::-webkit-scrollbar {
-  width: 8px;
-}
-.sidebar::-webkit-scrollbar-thumb {
-  background: var(--bg-hover);
-  border-radius: 4px;
-}
-
-.sidebar-section {
-  padding: 0 16px;
-  margin-bottom: 16px;
-}
-
-.sidebar-section h3 {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
-  padding-left: 8px;
-}
-
-.sidebar ul {
-  list-style: none;
-}
-
-.sidebar li {
-  padding: 10px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 0.9rem;
-}
-
-.sidebar li:hover, .sidebar li.active {
-  background-color: var(--bg-surface);
-}
-
-.badge {
-  background-color: var(--brand-orange);
-  font-size: 0.6rem;
-  padding: 2px 6px;
-  border-radius: 4px;
-  margin-left: auto;
-}
-
-.sidebar hr {
-  border: 0;
-  border-top: 1px solid var(--border-color);
-  margin: 16px 0;
-}
-
-/* --- Feed --- */
-.feed-container {
-  flex: 1;
-  margin-left: var(--sidebar-width);
-  padding: 24px;
+/* --- News Feed --- */
+.news-feed {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.feed-header {
-  width: 100%;
-  max-width: 650px;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-
-/* --- Post Cards --- */
-.post {
-  width: 100%;
-  max-width: 650px;
-  background-color: var(--bg-dark); /* Reddit uses transparent/dark bg for feed items now, separated by lines */
-  border-bottom: 1px solid var(--border-color);
-  padding: 12px 0 16px 0;
-  margin-bottom: 8px;
-}
-
-.post:hover {
-  background-color: rgba(255, 255, 255, 0.02);
-  border-radius: 8px;
-}
-
-.post-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.8rem;
-  margin-bottom: 8px;
-}
-
-.subreddit-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background-color: #242936;
-}
-
-.subreddit-name {
-  font-weight: 700;
-}
-
-.post-time {
-  color: var(--text-secondary);
-}
-
-.join-btn {
-  background-color: #0045ac;
-  color: white;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-weight: 600;
-  margin-left: auto;
-}
-
-.more-btn {
-  margin-left: 8px;
-}
-
-.post-tags {
-  margin-bottom: 8px;
-}
-
-.tag.spoiler {
   background-color: var(--bg-surface);
-  color: var(--text-secondary);
-  font-size: 0.75rem;
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 
-.post-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-  line-height: 1.4;
+.news-card {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-light);
+  cursor: pointer;
 }
 
-.post-media {
-  width: 100%;
-  border-radius: 16px;
-  background-color: #000;
-  margin-bottom: 12px;
-  overflow: hidden;
+.news-card:last-child {
+  border-bottom: none;
+}
+
+.news-card:hover .title {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+/* Image Wrappers */
+.image-wrapper {
+  width: 220px;
+  height: 140px;
+  border-radius: 8px;
+  background-color: #ddd;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.video-wrapper {
+  background-image: url('https://picsum.photos/seed/trump/220/140'); /* Placeholder */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.video-placeholder {
-  height: 350px;
-  position: relative;
-}
-
-.view-spoiler-btn {
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-weight: 600;
-}
-
-.image-placeholder {
-  height: 300px;
-  background-color: #1c1c1c; /* Mocking the DAW dark UI */
-}
-
-.promoted-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--bg-surface);
-  padding: 8px 16px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  font-size: 0.85rem;
-}
-
-.learn-more-btn {
-  border: 1px solid var(--text-primary);
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-weight: 600;
-}
-
-/* --- Post Actions --- */
-.post-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.vote-group {
-  display: flex;
-  align-items: center;
-  background-color: var(--bg-surface);
-  border-radius: 20px;
-  padding: 4px;
-}
-
-.vote-group button {
-  padding: 4px 8px;
+.play-button {
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-}
-
-.vote-group button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.vote-group span {
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 0 4px;
-}
-
-.action-btn {
-  background-color: var(--bg-surface);
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
   display: flex;
-  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--text-main);
+  padding-left: 4px; /* Optical center for triangle */
 }
 
-.action-btn:hover {
-  background-color: var(--bg-hover);
+.article-2-img { background-image: url('https://picsum.photos/seed/miami/220/140'); }
+.article-3-img { background-image: url('https://picsum.photos/seed/kevin/220/140'); }
+.article-4-img { background-image: url('https://picsum.photos/seed/police/220/140'); }
+
+/* Card Content */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.category {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  color: var(--yahoo-dark-purple);
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  color: var(--text-main);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.source-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #0045ac; /* Placeholder icon color */
+  display: inline-block;
+}
+
+.source-icon.people { background-color: #00c3ff; }
+
+/* Ad specific styles */
+.ad-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.ad-badge {
+  border: 1px solid var(--border-input);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* --- Right Sidebar Ad --- */
+.ad-banner {
+  background-color: #ffffff;
+  border: 8px solid #4a3399; /* Elastic Email brand border */
+  border-radius: 4px;
+  padding: 24px 16px;
+  text-align: center;
+  position: sticky;
+  top: 100px; /* Sticks when scrolling */
+}
+
+.ad-banner-header {
+  position: absolute;
+  top: -24px;
+  right: 0;
+  background: white;
+  padding: 2px 6px;
+  border: 1px solid #ddd;
+  font-size: 0.7rem;
+  color: #888;
+  display: flex;
+  gap: 4px;
+}
+
+.ad-banner-content h3 {
+  color: #4a3399;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.ad-banner-content h4 {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+
+.ad-banner-content p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 24px;
+}
+
+.ad-open-btn {
+  background-color: #211551;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.ad-open-btn:hover {
+  background-color: #170d3b;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+  .search-container {
+    display: none; /* Hide search on small screens for simplicity */
+  }
+}
+@media (max-width: 600px) {
+  .news-card {
+    flex-direction: column;
+  }
+  .image-wrapper {
+    width: 100%;
+    height: 200px;
+  }
 }
